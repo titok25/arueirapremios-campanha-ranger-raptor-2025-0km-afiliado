@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="pt" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RANGER RAPTOR 0KM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Public Sans', sans-serif;
+      background-color: #f4f6f8;
+      color: #212529;
+      min-height: 100vh;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1100;
+      background-color: #000000;
+      box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
+    }
+
+    .header-toolbar {
+      min-height: 64px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-logo {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .header-menu-btn {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .header-menu-btn:hover {
+      background-color: rgba(255,255,255,0.08);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content {
+      padding-top: 64px;
+      min-height: 100vh;
+    }
+
+    .page-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      min-height: calc(100vh - 64px);
+    }
+
+    /* ===== CAROUSEL ===== */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    .carousel-slides {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      position: relative;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+      padding: 16px;
+      color: white;
+    }
+
+    .carousel-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .badge-adquira {
+      background-color: #198754;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-ltp {
+      background-color: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.85);
+      font-size: 10px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .carousel-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: white;
+      text-transform: uppercase;
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+
+    .carousel-subtitle {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .carousel-counter {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background-color: rgba(0,0,0,0.5);
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+    }
+
+    .carousel-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      z-index: 10;
+      transition: background-color 0.2s;
+    }
+
+    .carousel-nav-btn:hover {
+      background-color: rgba(255,255,255,0.3);
+    }
+
+    .carousel-nav-prev { left: 8px; }
+    .carousel-nav-next { right: 8px; }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 8px;
+      right: 12px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      background-color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      padding: 0;
+      transition: background-color 0.2s;
+    }
+
+    .carousel-dot.active {
+      background-color: white;
+    }
+
+    /* ===== PROGRESS SECTION ===== */
+    .progress-section {
+      background-color: #000000;
+      padding: 10px 16px 8px;
+      color: white;
+    }
+
+    .progress-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .meus-titulos-btn {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.8);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+
+    .meus-titulos-btn:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    .progress-percent {
+      font-size: 18px;
+      font-weight: 800;
+      color: white;
+      text-align: center;
+      margin-bottom: 8px;
+      display: none;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #198754 0%, #1b9b5b 100%);
+      border-radius: 6px;
+      width: 56.04%;
+      transition: width 0.6s ease;
+      position: relative;
+    }
+
+    .progress-bar-text {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+      font-weight: 800;
+      color: white;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* ===== PRICE SECTION ===== */
+    .price-section {
+      background-color: #000000;
+      padding: 6px 16px 14px;
+      color: white;
+      text-align: center;
+    }
+
+    .price-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 2px;
+    }
+
+    .price-value {
+      display: inline-block;
+      background-color: #198754;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 20px;
+    }
+
+    /* ===== PACKAGES SECTION ===== */
+    .packages-section {
+      padding: 14px 16px;
+      background-color: #ffffff;
+    }
+
+    .packages-hint {
+      text-align: center;
+      font-size: 13px;
+      color: #637381;
+      margin-bottom: 10px;
+      padding: 8px 12px;
+      background-color: #f4f6f8;
+      border-radius: 8px;
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .package-btn {
+      background-color: #212529;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 8px;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.2s, transform 0.1s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .package-btn:hover {
+      background-color: #343a40;
+      transform: translateY(-1px);
+    }
+
+    .package-btn:active {
+      transform: translateY(0);
+    }
+
+    .package-qty {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .package-price {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 400;
+    }
+
+    .package-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: rgba(255,255,255,0.9);
+      margin-top: 2px;
+    }
+
+    /* ===== QUANTITY SELECTOR ===== */
+    .qty-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .qty-btn {
+      background: none;
+      border: 1.5px solid #dfe3e8;
+      color: #637381;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: border-color 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .qty-btn:hover {
+      border-color: #212529;
+      color: #212529;
+    }
+
+    .qty-input-wrapper {
+      flex: 1;
+      position: relative;
+    }
+
+    .qty-input {
+      width: 100%;
+      height: 36px;
+      border: 1.5px solid #dfe3e8;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: 'Public Sans', sans-serif;
+      color: #212529;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .qty-input:focus {
+      border-color: #212529;
+    }
+
+    /* ===== MAIN CTA BUTTON ===== */
+    .cta-btn {
+      width: 100%;
+      background-color: #198754;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background-color 0.2s, transform 0.1s;
+      margin-bottom: 10px;
+      font-family: 'Public Sans', sans-serif;
+    }
+
+    .cta-btn:hover {
+      background-color: #157347;
+      transform: translateY(-1px);
+    }
+
+    .cta-btn:active {
+      transform: translateY(0);
+    }
+
+    .cta-btn-price {
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    /* ===== DESCRIPTION BUTTON ===== */
+    .desc-btn {
+      width: 100%;
+      background: none;
+      border: 1.5px dashed #dfe3e8;
+      color: #637381;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: border-color 0.2s, color 0.2s;
+      font-family: 'Public Sans', sans-serif;
+      margin-bottom: 16px;
+    }
+
+    .desc-btn:hover {
+      border-color: #919eab;
+      color: #212529;
+    }
+
+    /* ===== DESCRIPTION TEXT ===== */
+    .desc-text {
+      display: none;
+      padding: 12px;
+      background-color: #f4f6f8;
+      border-radius: 8px;
+      font-size: 12px;
+      color: #637381;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .desc-text.visible {
+      display: block;
+    }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background-color: #f4f6f8;
+      border-top: 1px solid #dfe3e8;
+      border-bottom: 1px solid #dfe3e8;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #212529;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-badge {
+      background-color: #dfe3e8;
+      color: #637381;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    /* ===== TITLES PREMIADOS ===== */
+    .titles-list {
+      padding: 0 16px 8px;
+      background-color: #ffffff;
+    }
+
+    .title-row {
+      display: flex;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #f4f6f8;
+      gap: 8px;
+    }
+
+    .title-number {
+      background-color: #212529;
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .title-number.winner {
+      background-color: #198754;
+    }
+
+    .title-prize {
+      flex: 1;
+      font-size: 13px;
+      font-weight: 600;
+      color: #212529;
+    }
+
+    .title-winner {
+      font-size: 13px;
+      color: #637381;
+      text-align: right;
+    }
+
+    .title-winner.available {
+      color: #919eab;
+    }
+
+    /* ===== SHOW MORE BUTTON ===== */
+    .show-more-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      color: #198754;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 10px 16px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-family: 'Public Sans', sans-serif;
+      border-top: 1px solid #f4f6f8;
+      background-color: #f9fafb;
+    }
+
+    .show-more-btn:hover {
+      background-color: #f4f6f8;
+    }
+
+    /* ===== HIDDEN ROWS ===== */
+    .title-row.hidden {
+      display: none;
+    }
+
+    /* ===== ROLETAS SECTION ===== */
+    .roletas-combos {
+      padding: 12px 16px;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .roleta-combo-card {
+      background: linear-gradient(135deg, #1b9b5b 0%, #157347 100%);
+      border-radius: 12px;
+      padding: 16px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(25, 135, 84, 0.3);
+    }
+
+    .roleta-combo-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(25, 135, 84, 0.4);
+    }
+
+    .roleta-combo-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .roleta-combo-label {
+      font-size: 11px;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .roleta-combo-qty {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .roleta-combo-price {
+      font-size: 12px;
+      opacity: 0.85;
+    }
+
+    .roleta-combo-right {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+
+    .roleta-combo-receive {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .roleta-combo-count {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .roleta-combo-desc {
+      font-size: 11px;
+      opacity: 0.75;
+      margin-top: 2px;
+      max-width: 180px;
+    }
+
+    /* ===== ROLETAS GANHADORES ===== */
+    .roletas-winners {
+      padding: 0 16px 8px;
+      background-color: #ffffff;
+    }
+
+    .roleta-winner-row {
+      display: flex;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #f4f6f8;
+      gap: 8px;
+    }
+
+    .roleta-prize-badge {
+      background-color: #f4f6f8;
+      color: #212529;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .roleta-winner-name {
+      flex: 1;
+      font-size: 13px;
+      color: #919eab;
+      text-align: right;
+    }
+
+    /* ===== SOCIAL SHARE ===== */
+    .social-section {
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      background-color: #ffffff;
+      border-top: 1px solid #f4f6f8;
+    }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .social-btn:hover {
+      transform: scale(1.1);
+      opacity: 0.9;
+    }
+
+    .social-btn.facebook { background-color: #3b5998; }
+    .social-btn.twitter { background-color: #1da1f2; }
+    .social-btn.telegram { background-color: #0088cc; }
+    .social-btn.whatsapp { background-color: #25d366; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background-color: #f4f6f8;
+      padding: 24px 16px;
+      text-align: center;
+    }
+
+    .footer-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 20px;
+    }
+
+    .footer-logos-box {
+      border: 2px solid #dfe3e8;
+      border-radius: 40px;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background-color: white;
+    }
+
+    .footer-logo-img {
+      max-width: 300px;
+      height: auto;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: #637381;
+      line-height: 1.7;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ===== CHECKOUT MODAL ===== */
+    .checkout-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .checkout-modal.active {
+      display: flex;
+    }
+
+    .checkout-content {
+      background-color: white;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .checkout-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border-bottom: 1px solid #dfe3e8;
+      background-color: #f4f6f8;
+    }
+
+    .checkout-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #212529;
+    }
+
+    .checkout-close {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #637381;
+      cursor: pointer;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .checkout-close:hover {
+      color: #212529;
+    }
+
+    .checkout-body {
+      padding: 20px;
+    }
+
+    .checkout-step {
+      display: none;
+    }
+
+    .checkout-step.active {
+      display: block;
+    }
+
+    .checkout-info {
+      background-color: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      padding: 12px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: #1565c0;
+    }
+
+    .checkout-form-group {
+      margin-bottom: 16px;
+    }
+
+    .checkout-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #212529;
+      margin-bottom: 6px;
+    }
+
+    .checkout-input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #dfe3e8;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: 'Public Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .checkout-input:focus {
+      border-color: #212529;
+    }
+
+    .checkout-input.error {
+      border-color: #ff4842;
+    }
+
+    .error-text {
+      color: #ff4842;
+      font-size: 11px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .error-text.visible {
+      display: block;
+    }
+
+    .checkout-warning {
+      background-color: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 12px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: #856404;
+    }
+
+    .checkout-footer {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .checkout-btn {
+      flex: 1;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      font-family: 'Public Sans', sans-serif;
+    }
+
+    .checkout-btn-primary {
+      background-color: #198754;
+      color: white;
+    }
+
+    .checkout-btn-primary:hover {
+      background-color: #157347;
+    }
+
+    .checkout-btn-secondary {
+      background-color: #f4f6f8;
+      color: #637381;
+      border: 1.5px solid #dfe3e8;
+    }
+
+    .checkout-btn-secondary:hover {
+      background-color: #e9ecef;
+    }
+
+    .checkout-terms {
+      font-size: 11px;
+      color: #637381;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
+    .checkout-terms a {
+      color: #198754;
+      text-decoration: none;
+    }
+
+    .checkout-terms a:hover {
+      text-decoration: underline;
+    }
+
+    .pix-code-container {
+      background-color: #f4f6f8;
+      border: 2px dashed #198754;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .pix-code-label {
+      font-size: 12px;
+      color: #637381;
+      margin-bottom: 8px;
+    }
+
+    .pix-code {
+      background-color: white;
+      border: 1px solid #dfe3e8;
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 12px;
+      font-family: 'Courier New', monospace;
+      word-break: break-all;
+      margin-bottom: 8px;
+      color: #212529;
+    }
+
+    .pix-copy-btn {
+      background-color: #198754;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .pix-copy-btn:hover {
+      background-color: #157347;
+    }
+
+    .numbers-container {
+      margin-top: 16px;
+      padding: 12px;
+      background-color: #f4f6f8;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .numbers-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #212529;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .numbers-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .number-badge {
+      background-color: #212529;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 480px) {
+      .carousel-slide img {
+        height: 260px;
+      }
+      .carousel-title {
+        font-size: 18px;
+      }
+      .package-qty {
+        font-size: 18px;
+      }
+      .checkout-content {
+        width: 95%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-toolbar">
+      <div class="header-container">
+        <a href="/">
+          <img class="header-logo" src="images/logo.jpg" alt="logo" />
+        </a>
+        <button class="header-menu-btn" aria-label="Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <div class="page-wrapper">
+
+      <!-- CAROUSEL -->
+      <div class="carousel-container">
+        <div class="carousel-slides" id="carouselSlides">
+          <div class="carousel-slide">
+            <img src="images/car1.jpg" alt="main image" />
+          </div>
+          <div class="carousel-slide">
+            <img src="images/car2.jpg" alt="main image" />
+          </div>
+          <div class="carousel-slide">
+            <img src="images/car3.jpg" alt="main image" />
+          </div>
+          <div class="carousel-slide">
+            <img src="images/car4.jpg" alt="main image" />
+          </div>
+        </div>
+
+        <!-- Overlay com título -->
+        <div class="carousel-overlay">
+          <div class="carousel-badge-row">
+            <span class="badge-adquira">Adquira Já!</span>
+            <span class="badge-ltp">LTP-PRC-2026/01370</span>
+          </div>
+          <div class="carousel-title">RANGER RAPTOR 0KM</div>
+          <div class="carousel-subtitle">PEGA LIGEIRO, VAI ACABAR ‼️</div>
+        </div>
+
+        <!-- Contador -->
+        <div class="carousel-counter" id="carouselCounter">1/4</div>
+
+        <!-- Botões de navegação -->
+        <button class="carousel-nav-btn carousel-nav-prev" onclick="changeSlide(-1)" aria-label="Ir para foto anterior">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <button class="carousel-nav-btn carousel-nav-next" onclick="changeSlide(1)" aria-label="Ir para próxima foto">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+
+        <!-- Dots -->
+        <div class="carousel-dots">
+          <button class="carousel-dot active" onclick="goToSlide(0)" id="dot0"></button>
+          <button class="carousel-dot" onclick="goToSlide(1)" id="dot1"></button>
+          <button class="carousel-dot" onclick="goToSlide(2)" id="dot2"></button>
+          <button class="carousel-dot" onclick="goToSlide(3)" id="dot3"></button>
+        </div>
+      </div>
+
+      <!-- PROGRESS SECTION -->
+      <div class="progress-section">
+        <div class="progress-header">
+          <button class="meus-titulos-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path d="M9 11l3 3L22 4"/>
+              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+            Meus títulos
+          </button>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progressBar"></div>
+          <span class="progress-bar-text" id="progressPercent">56.04%</span>
+        </div>
+      </div>
+
+      <!-- PRICE SECTION -->
+      <div class="price-section">
+        <div class="price-label">Por apenas</div>
+        <span class="price-value" id="pricePerUnit">R$ 0,49</span>
+      </div>
+
+      <!-- PACKAGES SECTION -->
+      <div class="packages-section">
+        <div class="packages-hint">
+          Quanto mais títulos, mais chances de ganhar!
+        </div>
+        <div class="packages-grid">
+          <button class="package-btn" onclick="addPackage(50)">
+            <span class="package-qty">+50</span>
+            <span class="package-price" id="price50">R$ 24,50</span>
+            <span class="package-label">ADICIONAR</span>
+          </button>
+          <button class="package-btn" onclick="addPackage(100)">
+            <span class="package-qty">+100</span>
+            <span class="package-price" id="price100">R$ 49,00</span>
+            <span class="package-label">ADICIONAR</span>
+          </button>
+          <button class="package-btn" onclick="addPackage(500)">
+            <span class="package-qty">+500</span>
+            <span class="package-price" id="price500">R$ 245,00</span>
+            <span class="package-label">ADICIONAR</span>
+          </button>
+          <button class="package-btn" onclick="addPackage(1000)">
+            <span class="package-qty">+1000</span>
+            <span class="package-price" id="price1000">R$ 490,00</span>
+            <span class="package-label">ADICIONAR</span>
+          </button>
+        </div>
+
+        <!-- Quantity Selector -->
+        <div class="qty-row">
+          <button class="qty-btn" onclick="changeQty(-1)" aria-label="Decrementar quantidade">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="8" y1="12" x2="16" y2="12"/>
+            </svg>
+          </button>
+          <div class="qty-input-wrapper">
+            <input class="qty-input" id="qtyInput" type="tel" value="18" />
+          </div>
+          <button class="qty-btn" onclick="changeQty(1)" aria-label="Incrementar quantidade">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="16"/>
+              <line x1="8" y1="12" x2="16" y2="12"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- CTA Button -->
+        <button class="cta-btn" id="ctaBtn" onclick="openCheckout()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Quero participar
+          <span class="cta-btn-price" id="ctaPrice">R$ 8,82</span>
+        </button>
+
+        <!-- Description Button -->
+        <button class="desc-btn" onclick="toggleDesc()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          Descrição/Regulamento
+        </button>
+
+        <!-- Description Text -->
+        <div class="desc-text" id="descText">
+          <p>Este título de loteria está autorizado com base na Portaria/Termo de Autorização Nº 00946/2026 LTP-PRC-2026/01370, registrado pela empresa Razor Consultoria LTDA, CNPJ 57.610.480/0001-20.</p>
+          <br/>
+          <p><strong>Consulta ao Regulamento:</strong> Antes de contratar, é recomendado que o cliente consulte o regulamento completo do produto, disponível no site ou no local de venda.</p>
+          <br/>
+          <p><strong>Venda Proibida para Menores de 18 Anos:</strong> A comercialização é proibida para menores de 18 anos, conforme a legislação vigente.</p>
+          <br/>
+          <p><strong>Sorteios e Entrega dos Prêmios:</strong> Todos os sorteios e a entrega dos prêmios serão realizados conforme os critérios estabelecidos no regulamento disponível no site.</p>
+          <br/>
+          <p><strong>Participação em Múltiplos Sorteios:</strong> O adquirente do título digital participará de todos os sorteios previstos, mesmo que já tenha sido contemplado anteriormente.</p>
+          <br/>
+          <p><strong>Autorização de Uso de Imagem:</strong> Ao adquirir o título, o titular autoriza, sem custo adicional, o uso de seu nome, voz e imagem para a divulgação da campanha social associada à promoção.</p>
+        </div>
+      </div>
+
+      <!-- TÍTULOS PREMIADOS -->
+      <div class="section-header">
+        <div class="section-title">
+          🏆 Títulos Premiados
+        </div>
+        <span class="section-badge" id="titlesBadge">7 / 20</span>
+      </div>
+
+      <div class="titles-list" id="titlesList">
+        <div class="title-row">
+          <span class="title-number winner">7718939</span>
+          <span class="title-prize">R$ 10.000,00 💰</span>
+          <span class="title-winner">Mariana 🏆</span>
+        </div>
+        <div class="title-row">
+          <span class="title-number">5092351</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner available">Disponível</span>
+        </div>
+        <div class="title-row">
+          <span class="title-number winner">3946959</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner">Bruno 🏆</span>
+        </div>
+        <div class="title-row">
+          <span class="title-number winner">0831407</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner">Wanderson 🏆</span>
+        </div>
+        <div class="title-row">
+          <span class="title-number winner">4625819</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner">David 🏆</span>
+        </div>
+        <!-- HIDDEN ROWS - MOSTRAR MAIS -->
+        <div class="title-row hidden">
+          <span class="title-number">6043197</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner available">Disponível</span>
+        </div>
+        <div class="title-row hidden">
+          <span class="title-number">0364411</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner available">Disponível</span>
+        </div>
+        <div class="title-row hidden">
+          <span class="title-number winner">0963679</span>
+          <span class="title-prize">R$ 30.000,00 💰</span>
+          <span class="title-winner">Alessandra 🏆</span>
+        </div>
+        <div class="title-row hidden">
+          <span class="title-number">2182760</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner available">Disponível</span>
+        </div>
+        <div class="title-row hidden">
+          <span class="title-number winner">0596971</span>
+          <span class="title-prize">IPHONE 17 PRO MAX 📱</span>
+          <span class="title-winner">Herikis 🏆</span>
+        </div>
+        <div class="title-row hidden">
+          <span class="title-number">0624194</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner available">Disponível</span>
+        </div>
+        <div class="title-row hidden">
+          <span class="title-number">5016884</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner available">Disponível</span>
+        </div>
+        <div class="title-row hidden">
+          <span class="title-number">7569530</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner available">Disponível</span>
+        </div>
+        <div class="title-row hidden">
+          <span class="title-number">6661937</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner available">Disponível</span>
+        </div>
+        <div class="title-row hidden">
+          <span class="title-number">8283651</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner available">Disponível</span>
+        </div>
+        <div class="title-row hidden">
+          <span class="title-number">6922298</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner available">Disponível</span>
+        </div>
+        <div class="title-row hidden">
+          <span class="title-number winner">4379132</span>
+          <span class="title-prize">MT 09 🏍️</span>
+          <span class="title-winner">Jonas 🏆</span>
+        </div>
+        <div class="title-row hidden">
+          <span class="title-number">8069302</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner available">Disponível</span>
+        </div>
+        <div class="title-row hidden">
+          <span class="title-number">4172331</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner available">Disponível</span>
+        </div>
+        <div class="title-row hidden">
+          <span class="title-number">5532206</span>
+          <span class="title-prize">R$ 1.000,00 💰</span>
+          <span class="title-winner available">Disponível</span>
+        </div>
+      </div>
+
+      <button class="show-more-btn" id="showMoreTitles" onclick="toggleShowMore('titles')">∨ Mostrar Mais</button>
+
+      <!-- ROLETAS INSTANTÂNEAS - COMBOS -->
+      <div class="section-header">
+        <div class="section-title">
+          🎯 Roletas Instantâneas
+        </div>
+        <span class="section-badge" style="background-color: #e8f5e9; color: #198754;">combos</span>
+      </div>
+
+      <div class="roletas-combos">
+        <div class="roleta-combo-card" onclick="selectCombo(21, 5)">
+          <div class="roleta-combo-left">
+            <span class="roleta-combo-label">A cada</span>
+            <span class="roleta-combo-qty">21 Títulos</span>
+            <span class="roleta-combo-price">por R$ 10,29</span>
+          </div>
+          <div class="roleta-combo-right">
+            <div class="roleta-combo-receive">Recebe <strong>5</strong></div>
+            <div class="roleta-combo-count">Roletas 🎯</div>
+            <div class="roleta-combo-desc">5 chance(s) de contemplação nas Roletas Instantâneas</div>
+          </div>
+        </div>
+
+        <div class="roleta-combo-card" onclick="selectCombo(42, 15)">
+          <div class="roleta-combo-left">
+            <span class="roleta-combo-label">A cada</span>
+            <span class="roleta-combo-qty">42 Títulos</span>
+            <span class="roleta-combo-price">por R$ 20,58</span>
+          </div>
+          <div class="roleta-combo-right">
+            <div class="roleta-combo-receive">Recebe <strong>15</strong></div>
+            <div class="roleta-combo-count">Roletas 🎯</div>
+            <div class="roleta-combo-desc">15 chance(s) de contemplação nas Roletas Instantâneas</div>
+          </div>
+        </div>
+
+        <div class="roleta-combo-card" onclick="selectCombo(100, 50)">
+          <div class="roleta-combo-left">
+            <span class="roleta-combo-label">A cada</span>
+            <span class="roleta-combo-qty">100 Títulos</span>
+            <span class="roleta-combo-price">por R$ 49,00</span>
+          </div>
+          <div class="roleta-combo-right">
+            <div class="roleta-combo-receive">Recebe <strong>50</strong></div>
+            <div class="roleta-combo-count">Roletas 🎯</div>
+            <div class="roleta-combo-desc">50 chance(s) de contemplação nas Roletas Instantâneas</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROLETAS INSTANTÂNEAS - GANHADORES -->
+      <div class="section-header">
+        <div class="section-title">
+          🎯 Roletas Instantâneas
+        </div>
+        <span class="section-badge" id="rolatasBadge">0 / 10</span>
+      </div>
+
+      <div class="roletas-winners" id="roletasWinners">
+        <div class="roleta-winner-row">
+          <span class="roleta-prize-badge">💰 1.000,00</span>
+          <span class="roleta-winner-name">Disponível</span>
+        </div>
+        <div class="roleta-winner-row">
+          <span class="roleta-prize-badge">💰 1.000,00</span>
+          <span class="roleta-winner-name">Disponível</span>
+        </div>
+        <div class="roleta-winner-row">
+          <span class="roleta-prize-badge">💰 1.000,00</span>
+          <span class="roleta-winner-name">Disponível</span>
+        </div>
+        <div class="roleta-winner-row">
+          <span class="roleta-prize-badge">💰 1.000,00</span>
+          <span class="roleta-winner-name">Disponível</span>
+        </div>
+        <div class="roleta-winner-row">
+          <span class="roleta-prize-badge">💰 1.000,00</span>
+          <span class="roleta-winner-name">Disponível</span>
+        </div>
+      </div>
+
+      <button class="show-more-btn" id="showMoreRoletas" onclick="toggleShowMore('roletas')">∨ Mostrar Mais</button>
+
+      <!-- SOCIAL SHARE -->
+      <div class="social-section">
+        <button class="social-btn facebook" aria-label="Compartilhar no Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
+            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+          </svg>
+        </button>
+        <button class="social-btn twitter" aria-label="Compartilhar no Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
+            <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+          </svg>
+        </button>
+        <button class="social-btn telegram" aria-label="Compartilhar no Telegram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
+          </svg>
+        </button>
+        <button class="social-btn whatsapp" aria-label="Compartilhar no WhatsApp">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="footer-logos">
+          <div class="footer-logos-box">
+            <img src="tema/imagens/footer_logos.png" alt="LOTEP e RAZOR" class="footer-logo-img" />
+          </div>
+        </div>
+
+        <p class="footer-text">
+          Este título de loteria está autorizado com base na Portaria/Termo de Autorização Nº 00610/2026 LTP-PRC-2026/01370, registrado pela empresa Razor Consultoria LTDA, CNPJ 57.610.480/0001-20.<br/><br/>
+          Consulta ao Regulamento: Antes de contratar, é recomendado que o cliente consulte o regulamento completo do produto, disponível no site ou no local de venda.<br/><br/>
+          Venda Proibida para Menores de 18 Anos: A comercialização é proibida para menores de 18 anos, conforme a legislação vigente.<br/><br/>
+          Sorteios e Entrega dos Prêmios: Todos os sorteios e a entrega dos prêmios serão realizados conforme os critérios estabelecidos no regulamento disponível no site.<br/><br/>
+          Participação em Múltiplos Sorteios: O adquirente do título digital participará de todos os sorteios previstos, mesmo que já tenha sido contemplado anteriormente.<br/><br/>
+          Autorização de Uso de Imagem: Ao adquirir o título, o titular autoriza, sem custo adicional, o uso de seu nome, voz e imagem para a divulgação da campanha social associada à promoção.
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-content">
+      <div class="checkout-header">
+        <span class="checkout-title">Checkout</span>
+        <button class="checkout-close" onclick="closeCheckout()">✕</button>
+      </div>
+      <div class="checkout-body">
+        
+        <!-- STEP 1: TELEFONE -->
+        <div class="checkout-step active" id="step1">
+          <div class="checkout-info">
+            ℹ️ Você está adquirindo <strong id="step1Qty">18</strong> unidade(s) do produto <strong>RANGER RAPTOR 0KM</strong>
+          </div>
+          
+          <div class="checkout-form-group">
+            <label class="checkout-label">Informe seu telefone *</label>
+            <input class="checkout-input" id="phone1" type="tel" placeholder="(11) 99999-9999" maxlength="15" />
+            <span class="error-text" id="errorPhone1">Telefone inválido</span>
+          </div>
+
+          <div class="checkout-warning">
+            ⚠️ Informe seus dados para continuar
+          </div>
+
+          <div class="checkout-footer">
+            <button class="checkout-btn checkout-btn-secondary" onclick="closeCheckout()">Cancelar</button>
+            <button class="checkout-btn checkout-btn-primary" onclick="nextStep(1)">Continuar</button>
+          </div>
+
+          <div class="checkout-terms">
+            Ao continuar, você concorda com nossos <a href="#">termos de uso</a>
+          </div>
+        </div>
+
+        <!-- STEP 2: DADOS PESSOAIS -->
+        <div class="checkout-step" id="step2">
+          <div class="checkout-info">
+            ℹ️ Você está adquirindo <strong id="step2Qty">18</strong> unidade(s) do produto <strong>RANGER RAPTOR 0KM</strong>
+          </div>
+
+          <div class="checkout-form-group">
+            <label class="checkout-label">Confirme o Telefone *</label>
+            <input class="checkout-input" id="phone2" type="tel" placeholder="(11) 99999-9999" maxlength="15" />
+            <span class="error-text" id="errorPhone2">Telefone não confere</span>
+          </div>
+
+          <div class="checkout-form-group">
+            <label class="checkout-label">Nome Completo *</label>
+            <input class="checkout-input" id="fullName" type="text" placeholder="João Silva" />
+            <span class="error-text" id="errorName">Nome muito curto</span>
+          </div>
+
+          <div class="checkout-form-group">
+            <label class="checkout-label">E-mail *</label>
+            <input class="checkout-input" id="email" type="email" placeholder="joao@exemplo.com" />
+            <span class="error-text" id="errorEmail">E-mail inválido</span>
+          </div>
+
+          <div class="checkout-form-group">
+            <label class="checkout-label">CPF *</label>
+            <input class="checkout-input" id="cpf" type="tel" placeholder="123.456.789-01" maxlength="14" />
+            <span class="error-text" id="errorCpf">CPF inválido</span>
+          </div>
+
+          <div class="checkout-warning">
+            ⚠️ Informe seus dados para continuar
+          </div>
+
+          <div class="checkout-footer">
+            <button class="checkout-btn checkout-btn-secondary" onclick="prevStep(2)">Voltar</button>
+            <button class="checkout-btn checkout-btn-primary" onclick="nextStep(2)">Continuar</button>
+          </div>
+
+          <div class="checkout-terms">
+            Ao continuar, você concorda com nossos <a href="#">termos de uso</a>
+          </div>
+        </div>
+
+        <!-- STEP 3: PAGAMENTO PIX -->
+        <div class="checkout-step" id="step3">
+          <div class="checkout-info">
+            ✓ Dados confirmados! Agora realize o pagamento via PIX
+          </div>
+
+          <div class="pix-code-container">
+            <div class="pix-code-label">Escaneie o QR Code:</div>
+            <div id="pixQrCode" style="background: white; padding: 10px; border-radius: 8px; margin: 0 auto 15px; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; border: 1px solid #dfe3e8;">
+              <span style="color: #637381; font-size: 12px;">Aguardando código...</span>
+            </div>
+            <div class="pix-code-label">Ou copie o código PIX:</div>
+            <div class="pix-code" id="pixCode">Gerando código...</div>
+            <button class="pix-copy-btn" onclick="copyPixCode()">Copiar Código PIX</button>
+          </div>
+
+          <div class="numbers-container">
+            <span class="numbers-label">Seus números da sorte:</span>
+            <div class="numbers-grid" id="luckyNumbers">
+              <!-- Números gerados aqui -->
+            </div>
+          </div>
+
+          <div class="checkout-warning">
+            ⚠️ Após realizar o pagamento, sua reserva será confirmada automaticamente
+          </div>
+
+          <div class="checkout-footer">
+            <button class="checkout-btn checkout-btn-secondary" onclick="prevStep(3)">Voltar</button>
+            <button class="checkout-btn checkout-btn-primary" onclick="confirmPayment()">Pagamento Realizado</button>
+          </div>
+
+          <div class="checkout-terms">
+            Ao confirmar, você concorda com nossos <a href="#">termos de uso</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Biblioteca QR Code Local para garantir carregamento -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    // ===== CONSTANTS =====
+    const PRICE_PER_TITLE = 0.49;
+    const TOTAL_TITLES = 1000000; // 1 milhão de números
+    const CURRENT_TITLES = 560400; // Títulos já vendidos (56.04%)
+
+    // ===== CAROUSEL =====
+    let currentSlide = 0;
+    const totalSlides = 4;
+
+    function updateCarousel() {
+      const slides = document.getElementById('carouselSlides');
+      slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+      document.getElementById('carouselCounter').textContent = `${currentSlide + 1}/${totalSlides}`;
+      document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+    }
+
+    function changeSlide(direction) {
+      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateCarousel();
+    }
+
+    // Auto-play carousel
+    setInterval(() => changeSlide(1), 4000);
+
+    // ===== QUANTITY & PRICING =====
+    function updatePrice() {
+      const qty = parseInt(document.getElementById('qtyInput').value) || 1;
+      const total = (qty * PRICE_PER_TITLE).toFixed(2).replace('.', ',');
+      document.getElementById('ctaPrice').textContent = `R$ ${total}`;
+
+      // Atualizar progresso: baseado no total de 1 milhão
+      const totalSold = CURRENT_TITLES + qty; // Títulos já vendidos + nova compra
+      const rawPercent = (totalSold / TOTAL_TITLES) * 100;
+      // Limitar entre 0% e 100%
+      const clampedPercent = Math.min(100, Math.max(0, rawPercent));
+      const displayPercent = clampedPercent.toFixed(2);
+
+      // Atualizar largura da barra (preenchimento visual)
+      document.getElementById('progressBar').style.width = `${clampedPercent}%`;
+      // Atualizar texto da porcentagem (sempre visível no centro)
+      document.getElementById('progressPercent').textContent = `${displayPercent}%`;
+    }
+
+    function changeQty(delta) {
+      const input = document.getElementById('qtyInput');
+      let val = parseInt(input.value) || 1;
+      val = Math.max(1, val + delta);
+      input.value = val;
+      updatePrice();
+    }
+
+    function addPackage(qty) {
+      const input = document.getElementById('qtyInput');
+      let currentVal = parseInt(input.value) || 0;
+      input.value = currentVal + qty;
+      updatePrice();
+    }
+
+    function selectCombo(titleQty, roletaQty) {
+      document.getElementById('qtyInput').value = titleQty;
+      updatePrice();
+      openCheckout();
+    }
+
+    document.getElementById('qtyInput').addEventListener('input', updatePrice);
+
+    // ===== DESCRIPTION TOGGLE =====
+    function toggleDesc() {
+      const desc = document.getElementById('descText');
+      desc.classList.toggle('visible');
+    }
+
+    // ===== SHOW MORE / SHOW LESS =====
+    function toggleShowMore(section) {
+      const btn = document.getElementById(`showMore${section === 'titles' ? 'Titles' : 'Roletas'}`);
+      const rows = document.querySelectorAll(`${section === 'titles' ? '.titles-list' : '.roletas-winners'} .title-row.hidden`);
+      
+      const isHidden = rows[0]?.classList.contains('hidden');
+      rows.forEach(row => {
+        if (isHidden) {
+          row.classList.remove('hidden');
+        } else {
+          row.classList.add('hidden');
+        }
+      });
+      
+      btn.textContent = isHidden ? '∧ Mostrar Menos' : '∨ Mostrar Mais';
+    }
+
+    // ===== VALIDATIONS =====
+    function validatePhone(phone) {
+      const clean = phone.replace(/\D/g, '');
+      return clean.length >= 10 && clean.length <= 11;
+    }
+
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function validateCPF(cpf) {
+      const clean = cpf.replace(/\D/g, '');
+      if (clean.length !== 11) return false;
+      if (/^(\d)\1+$/.test(clean)) return false;
+      
+      let sum = 0;
+      let rest;
+      for (let i = 1; i <= 9; i++) sum = sum + parseInt(clean.substring(i-1, i)) * (11 - i);
+      rest = (sum * 10) % 11;
+      if ((rest == 10) || (rest == 11)) rest = 0;
+      if (rest != parseInt(clean.substring(9, 10))) return false;
+      
+      sum = 0;
+      for (let i = 1; i <= 10; i++) sum = sum + parseInt(clean.substring(i-1, i)) * (12 - i);
+      rest = (sum * 10) % 11;
+      if ((rest == 10) || (rest == 11)) rest = 0;
+      if (rest != parseInt(clean.substring(10, 11))) return false;
+      
+      return true;
+    }
+
+    // Masking
+    function maskPhone(v) {
+      v = v.replace(/\D/g, "");
+      v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
+      v = v.replace(/(\d)(\d{4})$/, "$1-$2");
+      return v;
+    }
+
+    function maskCPF(v) {
+      v = v.replace(/\D/g, "");
+      v = v.replace(/(\d{3})(\d)/, "$1.$2");
+      v = v.replace(/(\d{3})(\d)/, "$1.$2");
+      v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+      return v;
+    }
+
+    document.getElementById('phone1').addEventListener('input', e => e.target.value = maskPhone(e.target.value));
+    document.getElementById('phone2').addEventListener('input', e => e.target.value = maskPhone(e.target.value));
+    document.getElementById('cpf').addEventListener('input', e => e.target.value = maskCPF(e.target.value));
+
+    // ===== CHECKOUT MODAL =====
+    let currentCheckoutStep = 1;
+
+    function openCheckout() {
+      const qty = document.getElementById('qtyInput').value;
+      document.getElementById('step1Qty').textContent = qty;
+      document.getElementById('step2Qty').textContent = qty;
+      document.getElementById('checkoutModal').classList.add('active');
+      currentCheckoutStep = 1;
+      showStep(1);
+    }
+
+    function closeCheckout() {
+      document.getElementById('checkoutModal').classList.remove('active');
+      resetCheckoutForm();
+    }
+
+    function showStep(step) {
+      document.querySelectorAll('.checkout-step').forEach(s => s.classList.remove('active'));
+      document.getElementById(`step${step}`).classList.add('active');
+    }
+
+    function nextStep(currentStep) {
+      // Reset errors
+      document.querySelectorAll('.error-text').forEach(e => e.classList.remove('visible'));
+      document.querySelectorAll('.checkout-input').forEach(i => i.classList.remove('error'));
+
+      if (currentStep === 1) {
+        const phone = document.getElementById('phone1').value;
+        if (!validatePhone(phone)) {
+          document.getElementById('phone1').classList.add('error');
+          document.getElementById('errorPhone1').classList.add('visible');
+          return;
+        }
+        document.getElementById('phone2').value = phone;
+      } else if (currentStep === 2) {
+        const phone1 = document.getElementById('phone1').value;
+        const phone2 = document.getElementById('phone2').value;
+        const name = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const cpf = document.getElementById('cpf').value;
+
+        let hasError = false;
+
+        // Comparar apenas os números, ignorando a máscara
+        const phone1Digits = phone1.replace(/\D/g, '');
+        const phone2Digits = phone2.replace(/\D/g, '');
+        
+        if (phone1Digits !== phone2Digits) {
+          document.getElementById('phone2').classList.add('error');
+          document.getElementById('errorPhone2').classList.add('visible');
+          hasError = true;
+        }
+        if (name.length < 3) {
+          document.getElementById('fullName').classList.add('error');
+          document.getElementById('errorName').classList.add('visible');
+          hasError = true;
+        }
+        if (!validateEmail(email)) {
+          document.getElementById('email').classList.add('error');
+          document.getElementById('errorEmail').classList.add('visible');
+          hasError = true;
+        }
+        if (!validateCPF(cpf)) {
+          document.getElementById('cpf').classList.add('error');
+          document.getElementById('errorCpf').classList.add('visible');
+          hasError = true;
+        }
+
+        if (hasError) return;
+
+        // Generate Numbers and PIX
+        generateLuckyNumbers();
+        generatePixCode();
+      }
+      currentCheckoutStep = currentStep + 1;
+      showStep(currentCheckoutStep);
+    }
+
+    function prevStep(currentStep) {
+      currentCheckoutStep = currentStep - 1;
+      showStep(currentCheckoutStep);
+    }
+
+    function generateLuckyNumbers() {
+      const qty = parseInt(document.getElementById('qtyInput').value);
+      const container = document.getElementById('luckyNumbers');
+      container.innerHTML = '';
+      
+      for (let i = 0; i < qty; i++) {
+        const num = Math.floor(Math.random() * 9999999).toString().padStart(7, '0');
+        const badge = document.createElement('span');
+        badge.className = 'number-badge';
+        badge.textContent = num;
+        container.appendChild(badge);
+      }
+    }
+
+    async function generatePixCode() {
+      const qty = document.getElementById('qtyInput').value;
+      const total = (qty * PRICE_PER_TITLE).toFixed(2);
+      const name = document.getElementById('fullName').value;
+      const cpf = document.getElementById('cpf').value.replace(/\D/g, '');
+      const phone = document.getElementById('phone1').value.replace(/\D/g, '');
+      const email = document.getElementById('email').value;
+
+      document.getElementById('pixCode').textContent = 'Gerando código...';
+
+      // Converter preço unitário para centavos inteiros (0.49 -> 49)
+      const unitPriceCents = Math.round(PRICE_PER_TITLE * 100);
+      const quantity = parseInt(qty);
+      // Calcular total em centavos para garantir sincronia (49 * 18 = 882)
+      const totalCents = unitPriceCents * quantity;
+
+      try {
+        const response = await fetch('/api/create-pix', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            amount: totalCents, // Enviar já em centavos
+            customer: { name, document: cpf, phone, email },
+            items: [{ 
+              name: 'Títulos RANGER RAPTOR 0KM', 
+              quantity: quantity, 
+              unit_price: unitPriceCents // Enviar já em centavos
+            }]
+          })
+        });
+        const data = await response.json();
+        console.log('📥 Resposta completa:', JSON.stringify(data, null, 2));
+        
+        // Tentar encontrar o código PIX em diferentes lugares da resposta
+        let pixCode = null;
+        if (data.data) {
+          pixCode = data.data.pixCode || 
+                    (data.data.pix && (data.data.pix.qr_code || data.data.pix.copy_and_paste)) ||
+                    (data.data.payment && data.data.payment.pix_code);
+        }
+
+        if (pixCode) {
+          document.getElementById('pixCode').textContent = pixCode;
+          
+          // Gerar QR Code visual localmente usando qrcode.js
+          const qrContainer = document.getElementById('pixQrCode');
+          qrContainer.innerHTML = ''; // Limpar "Aguardando..."
+          
+          try {
+            new QRCode(qrContainer, {
+              text: pixCode,
+              width: 180,
+              height: 180,
+              colorDark: "#000000",
+              colorLight: "#ffffff",
+              correctLevel: QRCode.CorrectLevel.H
+            });
+            // Ajustar estilo da imagem gerada para centralizar
+            const qrImg = qrContainer.querySelector('img');
+            if (qrImg) {
+              qrImg.style.margin = '0 auto';
+              qrImg.style.display = 'block';
+            }
+          } catch (qrErr) {
+            console.error('Erro ao gerar QR Code local:', qrErr);
+            // Fallback para Google Charts se a biblioteca falhar
+            const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(pixCode)}&chs=200x200&chld=L|0`;
+            qrContainer.innerHTML = `<img src="${qrCodeUrl}" alt="QR Code PIX" style="width: 100%; height: 100%;" />`;
+          }
+        } else {
+          // Se houver erro na resposta, mostrar mensagem de erro detalhada
+          if (data.error || data.errors || !response.ok) {
+            console.error('❌ Erro completo:', data);
+            let errorMsg = data.message || 'Falha ao gerar PIX';
+            
+            // Extrair mensagem de erro de várias estruturas
+            if (data.details && data.details.errors && Array.isArray(data.details.errors)) {
+              errorMsg = data.details.errors.map(e => typeof e === 'string' ? e : (e.message || JSON.stringify(e))).join(' | ');
+            } else if (data.errors && Array.isArray(data.errors)) {
+              errorMsg = data.errors.map(e => typeof e === 'string' ? e : (e.message || JSON.stringify(e))).join(' | ');
+            } else if (data.details) {
+              errorMsg = typeof data.details === 'string' ? data.details : JSON.stringify(data.details);
+            }
+            
+            document.getElementById('pixCode').textContent = 'Erro: ' + errorMsg.substring(0, 300);
+          } else {
+            // Fallback mock para demonstração
+            document.getElementById('pixCode').textContent = '00020126580014br.gov.bcb.pix0136' + Math.random().toString(36).substring(2, 15) + '5204000053039865406' + total.replace('.', '') + '5802BR5913RAZOR LTDA6009SAO PAULO62070503***6304';
+          }
+        }
+      } catch (e) {
+        document.getElementById('pixCode').textContent = 'Erro ao gerar PIX. Tente novamente.';
+      }
+    }
+
+    function copyPixCode() {
+      const pixCode = document.getElementById('pixCode').textContent;
+      navigator.clipboard.writeText(pixCode).then(() => {
+        alert('Código PIX copiado com sucesso!');
+      });
+    }
+
+    function confirmPayment() {
+      alert('✓ Sua reserva foi registrada! Aguardando confirmação do pagamento.');
+      closeCheckout();
+    }
+
+    function resetCheckoutForm() {
+      document.querySelectorAll('.checkout-input').forEach(i => i.value = '');
+      document.querySelectorAll('.error-text').forEach(e => e.classList.remove('visible'));
+      document.querySelectorAll('.checkout-input').forEach(i => i.classList.remove('error'));
+    }
+
+    // Initialize
+    updatePrice();
+  </script>
+
+</body>
+</html>
